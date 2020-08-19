@@ -1,6 +1,6 @@
 # vuelearn
 
-> vue2.0 + element + vueRouter + vuex等技术开发的个人管理系统。
+> vue2.0 + ivew + vueRouter + axios + vuex等技术开发的个人管理系统。
 
 ## Build Setup
 
