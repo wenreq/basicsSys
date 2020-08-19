@@ -3,8 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import ViewUI from 'view-design'
+import 'view-design/dist/styles/iview.css'
 
+Vue.use(ViewUI)
 Vue.config.productionTip = false
+// 将判断空的函数注册全局
+Vue.prototype.isNotEmpty = function (val) {
+  if (val === null || val === undefined || val === '') {
+    return false
+  } else {
+    return true
+  }
+}
 
 /* eslint-disable no-new */
 new Vue({
