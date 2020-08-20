@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
+import {mapActions} from 'vuex'
 export default {
   data () {
     return {
@@ -42,18 +44,40 @@ export default {
         ],
         password: [
           { required: true, message: '请填写密码', trigger: 'blur' },
-          { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
+          { type: 'string', min: 5, message: '密码长度不能小于5位', trigger: 'blur' }
         ]
-      }
+      },
+      toPath: ''// 登录失效，重定向页面
     }
   },
+  created () {
+    this.toPath = this.$route.query.redirect
+  },
   methods: {
+    ...mapActions(['loginHandle']),
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
+          let params = {
+            userName: this.formInline.user,
+            password: md5(this.formInline.password)
+          }
+          this.loginHandle(params).then(res => {
+            debugger
+            if (this.toPath) {
+              this.$router.push(this.toPath)
+            } else {
+              this.$router.push({
+                name: 'Home'
+              })
+            }
+          })
+            .catch(error => { console.log(error) })
+            .finally((msg) => {
+              console.log(msg)
+            })
         } else {
-          this.$Message.error('Fail!')
+          return false
         }
       })
     }

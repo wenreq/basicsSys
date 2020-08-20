@@ -19,8 +19,9 @@ const router = new Router({
     }
   ]
 })
-const isLogin = localStorage.getItem('token') || ''
+
 router.beforeEach((to, from, next) => {
+  const isLogin = localStorage.getItem('token') || ''
   // 先判断路由要跳转到哪？跳转登录页面且是登录状态
   if (to.name === 'login' && !isLogin) {
     next()

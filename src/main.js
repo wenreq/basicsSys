@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
+import store from './store/index.js'
+import setStore from './store/setStore.js'
 
 Vue.use(ViewUI)
 Vue.config.productionTip = false
@@ -21,6 +23,10 @@ Vue.prototype.isNotEmpty = function (val) {
 new Vue({
   el: '#app',
   router,
+  store,
+  created () {
+    setStore()
+  },
   components: { App },
   template: '<App/>'
 })
