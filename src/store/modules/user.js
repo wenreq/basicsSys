@@ -38,7 +38,6 @@ const actions = {
         content.commit('setToken', result.user.token)
         content.commit('setUserInfo', JSON.stringify(result.user))
         content.commit('setMenuList', JSON.stringify(result.menus))
-        debugger
         Message.success('登录' + res.msg)
         resolve(result)
       }).catch(error => {

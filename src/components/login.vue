@@ -2,11 +2,14 @@
   <div class="login_bg">
     <div class="container">
       <div class="left">
-        <h1>夜跑记录管理系统</h1>
-        <h2>study hard and make progress every day</h2>
+        <h1 class="so-many-shadows">夜 跑 记 录 管 理 系 统</h1>
+        <h2 class="gradient-text">STUDY HARD AND MAKE PROGRESS EVERY DAY</h2>
       </div>
       <div class="right">
         <div class="right_content">
+          <div style="color:#ffffff;font-size:20px;margin:15px 0;font-weight: 600;">
+            欢迎您登录
+          </div>
           <Form ref="formInline" :model="formInline" :rules="ruleInline">
             <FormItem prop="user">
               <Input type="text" size="large" clearable  v-model="formInline.user" placeholder="用户名">
@@ -63,7 +66,6 @@ export default {
             password: md5(this.formInline.password)
           }
           this.loginHandle(params).then(res => {
-            debugger
             if (this.toPath) {
               this.$router.push(this.toPath)
             } else {
@@ -103,7 +105,20 @@ export default {
 .left {
   text-align: center;
   width: 50%;
-  color: #ffffff;
+  font-size: 16px;
+  margin-bottom: 150px;
+}
+.gradient-text{
+  /* background-image: linear-gradient(90deg,red,blue);
+  background-clip: text;
+  color: transparent; */
+
+  margin: 25px 0;
+  color: white;
+  -webkit-text-stroke:1px black;
+}
+.so-many-shadows{
+  text-shadow: 3px 3px 0 yellow,6px 6px 0 blue,9px 9px red,12px 12px 0 black;
 }
 .right {
   background-color: rgb(0 0 0 / 40%);
@@ -118,5 +133,6 @@ export default {
   width: 75%;
   vertical-align: middle;
   margin: 0 auto;
+  margin-bottom: 150px;
 }
 </style>
