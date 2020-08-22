@@ -4,10 +4,7 @@ import router from '../router'
 // 设置 replace 属性（默认值: false）的话，当点击时，会调用 router.replace() 而不是 router.push()，于是导航后不会留下 history 记录。即使点击返回按钮也不会回到这个页面。
 const toLogin = () => {
   router.replace({
-    path: '/login',
-    query: {
-      redirect: router.currentRoute.fullPath// 携带当前页面路由，以期在登录页面完成登录后返回当前页面
-    }
+    path: '/login'
   })
 }
 
@@ -15,11 +12,11 @@ var instance = axios.create({timeout: 1000 * 12})
 
 // 环境的切换
 if (process.env.NODE_ENV === 'development') {
-  instance.defaults.baseURL = 'http://10.168.2.203:9093/bossApi'
+  instance.defaults.baseURL = 'http://10.168.2.204:9095/cloudApi'
 } else if (process.env.NODE_ENV === 'debug') {
-  instance.defaults.baseURL = 'http://10.168.2.203:9093/bossApi'
+  instance.defaults.baseURL = 'http://10.168.2.204:9095/cloudApi'
 } else if (process.env.NODE_ENV === 'production') {
-  instance.defaults.baseURL = 'http://boss.mymrmao.com/bossApi'
+  instance.defaults.baseURL = 'http://cloud.mymrmao.com/cloudApi'
 }
 
 // post请求头的设置
@@ -31,8 +28,8 @@ instance.interceptors.request.use(
     // 每次发送请求之前判断localStore是否存在token
     // 如果存在，则统一在http请求的header中加上token，这样后台根据token判断你的登录情况
     // 即使本地存在token，也有可能是过期的，所以在相应拦截器中要对返回状态进行判断。
-    const token = localStorage.getItem('token') || ''
-    token && (config.headers.token = token)
+    const token = localStorage.getItem('token')
+    config.headers['token'] = token
     return config
   },
   error => {

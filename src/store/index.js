@@ -15,23 +15,21 @@ Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的
 │   └── ...
 └── store
     ├── index.js          # 我们组装模块并导出 store 的地方
-    ├── actions.js        # 根级别的 action
-    ├── mutations.js      # 根级别的 mutation
     └── modules
-        ├── cart.js       # 购物车模块
-        └── products.js   # 产品模块
+        ├── user.js       # 用户模块
+        └── permission.js # 权限模块
 */
 
 import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './modules/user'
-import products from './modules/products'
+import permission from './modules/permission'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     user,
-    products
+    permission
   }
 })

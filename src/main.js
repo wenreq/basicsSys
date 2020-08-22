@@ -7,6 +7,7 @@ import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import store from './store/index.js'
 import setStore from './store/setStore.js'
+import './permission'
 
 Vue.use(ViewUI)
 Vue.config.productionTip = false

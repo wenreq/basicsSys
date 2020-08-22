@@ -33,6 +33,7 @@ const actions = {
       login(params).then(res => {
         const result = res.result
         localStorage.setItem('token', result.user.token)
+        localStorage.setItem('token_flag', Boolean(result.user.token))
         localStorage.setItem('user', JSON.stringify(result.user))
         localStorage.setItem('menuList', JSON.stringify(result.menus))
         content.commit('setToken', result.user.token)

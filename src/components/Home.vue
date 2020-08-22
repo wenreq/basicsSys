@@ -1,35 +1,20 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+  <div>
+    <header-com></header-com>
+    <side-bar></side-bar>
   </div>
 </template>
-
 <script>
+import headerCom from '../common/page/header'
+import sideBar from '../common/page/sideBar'
 export default {
-  name: 'Home',
+  components: {
+    sideBar, headerCom
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      theme1: 'dark'
     }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

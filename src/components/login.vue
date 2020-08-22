@@ -2,7 +2,7 @@
   <div class="login_bg">
     <div class="container">
       <div class="left">
-        <h1 class="so-many-shadows">夜 跑 记 录 管 理 系 统</h1>
+        <h1 class="so-many-shadows">温少昌个人管理系统</h1>
         <h2 class="gradient-text">STUDY HARD AND MAKE PROGRESS EVERY DAY</h2>
       </div>
       <div class="right">
@@ -62,15 +62,15 @@ export default {
       this.$refs[name].validate((valid) => {
         if (valid) {
           let params = {
-            userName: this.formInline.user,
-            password: md5(this.formInline.password)
+            userName: this.formInline.user.trim(),
+            password: md5(this.formInline.password.trim())
           }
           this.loginHandle(params).then(res => {
             if (this.toPath) {
               this.$router.push(this.toPath)
             } else {
               this.$router.push({
-                name: 'Home'
+                path: '/'
               })
             }
           })
@@ -89,14 +89,26 @@ export default {
 
 <style scoped>
 .login_bg {
-  min-width: 1200px;
+  /* 布局一 */
+  /* min-width: 1200px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 10;
-  background: url("../../static/img/login_bg.jpg") center center no-repeat;
+  background: url("../../static/img/login_bg.jpg") center center no-repeat; */
+  /* 布局二 */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-image: url("../../static/img/sign_bg.png");
+  background-repeat: no-repeat;
+  background-color: #b8e5f8;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
 }
 .container {
   display: flex;
@@ -119,6 +131,8 @@ export default {
 }
 .so-many-shadows{
   text-shadow: 3px 3px 0 yellow,6px 6px 0 blue,9px 9px red,12px 12px 0 black;
+
+  /* color: #fff; */
 }
 .right {
   background-color: rgb(0 0 0 / 40%);
