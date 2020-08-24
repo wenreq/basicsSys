@@ -70,7 +70,7 @@ export default {
               this.$router.push(this.toPath)
             } else {
               this.$router.push({
-                path: '/'
+                path: '/home'
               })
             }
           })
@@ -102,7 +102,7 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-image: url("../../static/img/sign_bg.png");
+  background-image: url("../../../static/img/sign_bg.png");
   background-repeat: no-repeat;
   background-color: #b8e5f8;
   background-size: cover;

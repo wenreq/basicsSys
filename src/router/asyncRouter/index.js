@@ -2,16 +2,10 @@ import customer from './customer'
 
 const asyncRouter = [
   {
-    path: '/',
-    component: () => import('@/components/Home'),
+    path: '/home',
+    component: () => import('@/views/common/home'),
     name: 'home',
     meta: { title: '首页' }
-  },
-  {
-    path: '/login',
-    component: () => import('@/components/login'),
-    name: 'login',
-    meta: { title: '登录页' }
   },
   ...customer
 ]

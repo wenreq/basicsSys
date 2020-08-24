@@ -4,7 +4,6 @@ import store from './store/index'
 import router from './router/index'
 import {Notice} from 'view-design'
 
-const whiteList = ['login']
 // 全局前置守卫
 /*
   当一个导航触发时，全局前置守卫按照创建顺序调用。守卫是异步解析执行，此时导航在所有守卫 resolve 完之前一直处于 等待中。
@@ -20,26 +19,25 @@ const whiteList = ['login']
 router.beforeEach((to, from, next) => {
   NProgress.start()
   const isLogin = localStorage.getItem('token_flag') || false
-  // 先判断路由要跳转到哪？跳转登录页面且是登录状态
-  // 跳转到login切token不为空；
-
-  // 不先判断会报错 ：Maximum call stack size exceeded
-  /* 分析报错原因：
-      next()表示路由成功，直接进入to路由，不会再次调用route.beforeEach()
-      next('/login')表示路由拦截成功，重定向值login，会再次调用route.beforeEach()
-  */
   if (isLogin) {
     if ((to.name === 'login')) {
       next()
       NProgress.done()
     } else {
-      console.log(store.state)
       if (!store.state.permission.has) {
         const menus = JSON.parse(localStorage.getItem('menuList')) || []
         store.dispatch('generateRoutes', menus).then(res => {
           router.addRoutes(res)
-          // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-          next({...to, replace: true})
+          console.log(res)
+          console.log(router)
+          const redirect = decodeURIComponent(to.path)
+          if (to.path === redirect) {
+            // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+            next({ ...to, replace: true })
+          } else {
+            // 跳转到目的路由
+            next({ path: redirect })
+          }
         }).catch(() => {
           Notice.error({
             title: '错误',

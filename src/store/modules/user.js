@@ -17,10 +17,10 @@ const mutations = {
     state.token = token
   },
   setUserInfo (state, info) {
-    state.user = info
+    state.user = JSON.parse(info)
   },
   setMenuList (state, menu) {
-    state.menuList = menu
+    state.menuList = JSON.parse(menu)
   }
 }
 /**

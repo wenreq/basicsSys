@@ -1,11 +1,10 @@
 import { asyncRouter } from '@/router/asyncRouter/index'
-import main from '@/views/common/layout.vue'
+import main from '@/components/layout.vue'
 
 const mainRouters = {
-  path: '/main',
-  comments: main,
-  redirect: {path: '/'},
-  meta: {title: '主入口'},
+  path: '/home',
+  component: main,
+  meta: { title: '主入口整体布局' },
   children: []
 }
 
@@ -66,12 +65,12 @@ const actions = {
       accessedRouters.push({
         path: '/error',
         name: 'error',
-        components: () => import('@/views/common/error')
+        component: () => import('@/views/common/error')
       })
       mainRouters.children = accessedRouters
       const routers = [
         mainRouters,
-        {path: '*', redirect: {name: 'error'}}
+        {path: '*', redirect: {path: '/error'}}
       ]
       context.commit('setHas')
       context.commit('setRouter', routers)

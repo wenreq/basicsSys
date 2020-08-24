@@ -7,20 +7,12 @@ const router = new Router({
   mode: 'hash',
   routes: [
     {
-      path: '/',
-      name: 'home',
-      meta: {
-        title: '首页'
-      },
-      component: () => import('../components/Home.vue')
-    },
-    {
       path: '/login',
       name: 'login',
       meta: {
         title: '登录'
       },
-      component: () => import('../components/login.vue')
+      component: () => import('@/views/common/login.vue')
     }
   ]
 })
