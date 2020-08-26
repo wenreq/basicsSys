@@ -1,7 +1,6 @@
 <template>
   <div>
-    list
-
+    用户list
   </div>
 </template>
 

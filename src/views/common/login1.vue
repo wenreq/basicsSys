@@ -1,9 +1,15 @@
 <template>
-  <div class="view">
+  <div class="login_bg">
     <div class="container">
-      <div class="login-wrapper">
-        <div class="header">Login</div>
-        <div>
+      <div class="left">
+        <h1 class="so-many-shadows">温少昌个人管理系统</h1>
+        <h2 class="gradient-text">STUDY HARD AND MAKE PROGRESS EVERY DAY</h2>
+      </div>
+      <div class="right">
+        <div class="right_content">
+          <div style="color:#ffffff;font-size:20px;margin:15px 0;font-weight: 600;">
+            欢迎您登录
+          </div>
           <Form ref="formInline" :model="formInline" :rules="ruleInline">
             <FormItem prop="user">
               <Input type="text" size="large" clearable  v-model="formInline.user" placeholder="用户名">
@@ -16,7 +22,7 @@
               </Input>
             </FormItem>
             <FormItem>
-              <Button style="border-color: #fff;background-image: linear-gradient(to right,#a6c1ee,#fbc2eb);" type="primary" long @click="handleSubmit('formInline')">登 录</Button>
+              <Button long type="default" ghost @click="handleSubmit('formInline')">登 录</Button>
             </FormItem>
           </Form>
         </div>
@@ -82,25 +88,65 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.login_bg {
+  /* 布局一 */
+  /* min-width: 1200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: url("../../static/img/login_bg.jpg") center center no-repeat; */
+  /* 布局二 */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-image: url("../../../static/img/sign_bg.png");
+  background-repeat: no-repeat;
+  background-color: #b8e5f8;
+  background-size: cover;
+  width: 100%;
   height: 100vh;
-  background-image: linear-gradient(to right,#fbc2eb,#a6c1ee);
+  overflow: auto;
 }
-.login-wrapper{
-  background-color: #fff;
-  width: 350px;
-  height: 500px;
-  border-radius: 15px;
-  padding: 0 20px;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
+.container {
+  display: flex;
+  align-items: center;
 }
-.login-wrapper .header{
-  font-size: 30px;
-  font-weight: bold;
+.left {
   text-align: center;
-  line-height: 200px;
+  width: 50%;
+  font-size: 16px;
+  margin-bottom: 150px;
+}
+.gradient-text{
+  /* background-image: linear-gradient(90deg,red,blue);
+  background-clip: text;
+  color: transparent; */
+
+  margin: 25px 0;
+  color: white;
+  -webkit-text-stroke:1px black;
+}
+.so-many-shadows{
+  text-shadow: 3px 3px 0 yellow,6px 6px 0 blue,9px 9px red,12px 12px 0 black;
+
+  /* color: #fff; */
+}
+.right {
+  background-color: rgb(0 0 0 / 40%);
+  height: 100vh;
+  width: 350px;
+  z-index: 11;
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+.right_content{
+  width: 75%;
+  vertical-align: middle;
+  margin: 0 auto;
+  margin-bottom: 150px;
 }
 </style>

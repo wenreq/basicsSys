@@ -7,7 +7,7 @@
           <!-- <img style="height:64px;" src="../../../static/img/headerlogo.png" alt="logo" srcset=""> -->
         </div>
         <div class="headerRight">
-          <MenuItem v-for="(item,index) in menuList" :name="index" :key="index">{{item.name}}</MenuItem>
+          <MenuItem v-for="(item,index) in menuList" :name="index" :key="index" @click.native="topMenuClick(item)">{{item.name}}</MenuItem>
           <div class="userInfo">
             <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
             <Dropdown>
@@ -62,8 +62,8 @@ export default {
         nickName: '',
         mobile: '',
         createTime: ''
-
-      }
+      },
+      sideMenuList: []
     }
   },
   computed: {
@@ -82,6 +82,43 @@ export default {
     chekout () {
       localStorage.clear()
       this.$router.push({path: '/login'})
+    },
+    topMenuClick (item) {
+      // 获取点击的一级菜单的对象
+      let sideMenuList = this.menuList.find(i => i.id === item.id)
+      // 如果一级菜单不是工作台，获取二级菜单的列表且默认跳转二级菜单第一个
+      if (sideMenuList.name !== '工作台') {
+        this.sideMenuList = sideMenuList
+        let sideChildren = this.sideMenuList.children
+        if (sideChildren && sideChildren.length) {
+          const _item = this.setSelectMenu(sideChildren[0])
+          this.$router.push(
+            {path: _item.routeUrl}
+          ).catch(error => {
+            console.log(error)
+          })
+        }
+      } else {
+        this.sideMenuList = []
+        this.$router.push({
+          path: '/home'
+        }).catch(error => {
+          console.log(error)
+        })
+      }
+      this.$emit('sideMenuList', this.sideMenuList)
+    },
+    setSelectMenu (data) {
+      let _item = null
+      function filters (firstMenu) {
+        if (firstMenu.mType === 0 && firstMenu.children && firstMenu.children.length) {
+          filters(firstMenu.children[0])
+        } else {
+          _item = firstMenu
+        }
+      }
+      filters(data)
+      return _item
     }
   }
 }
