@@ -7,7 +7,7 @@
           <!-- <img style="height:64px;" src="../../../static/img/headerlogo.png" alt="logo" srcset=""> -->
         </div>
         <div class="headerRight">
-          <MenuItem v-for="(item,index) in menuList" :name="index" :key="index" @click.native="topMenuClick(item)">{{item.name}}</MenuItem>
+          <MenuItem ref="menuItem" :active-name='topSelectMenuId' v-for="(item,index) in menuList" :name="index" :key="index" @click.native="topMenuClick(item)">{{item.name}}</MenuItem>
           <div class="userInfo">
             <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
             <Dropdown>
@@ -53,6 +53,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  props: ['topSelectMenuId'],
   data () {
     return {
       theme1: 'light',
@@ -94,16 +95,12 @@ export default {
           const _item = this.setSelectMenu(sideChildren[0])
           this.$router.push(
             {path: _item.routeUrl}
-          ).catch(error => {
-            console.log(error)
-          })
+          )
         }
       } else {
         this.sideMenuList = []
         this.$router.push({
           path: '/home'
-        }).catch(error => {
-          console.log(error)
         })
       }
       this.$emit('sideMenuList', this.sideMenuList)

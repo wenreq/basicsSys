@@ -1,4 +1,5 @@
 import customer from './customer'
+import device from './device'
 
 const asyncRouter = [
   {
@@ -7,7 +8,8 @@ const asyncRouter = [
     name: 'home',
     meta: { title: '首页' }
   },
-  ...customer
+  ...customer,
+  ...device
 ]
 
 export {
