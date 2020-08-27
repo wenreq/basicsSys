@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <Layout>
+    <Layout style="height:100%;min-width:1350px;overflow: hidden;">
       <Header>
         <!-- <wen-header :topSelectMenuId='topSelectMenuId' :isNotError="isNotError" @sideMenuList='getSideMenuList'></wen-header> -->
         <div>
@@ -55,7 +55,7 @@
       </Header>
       <div style="display: flex;">
         <Sider v-if="sideList.children && sideList.children.length && isNotError" hide-trigger :style="{background: '#fff','min-width': '240px'}">
-          <Menu ref="menu" :theme="theme1" :active-name="sideSelectMenuName" :open-names="sideOpenNames">
+          <Menu @on-select="selectMenus" ref="menu" :theme="theme1" :active-name="sideSelectMenuName" :open-names="sideOpenNames">
             <template>
               <div v-for="(item,index) in sideList.children" :key="index">
                 <Submenu v-if="item.mType === 0 && item.children" :name="item.id">
@@ -72,8 +72,8 @@
             </template>
           </Menu>
         </Sider>
-        <Layout :style="{padding: '0 24px 24px'}">
-          <page-content :breadcrumb='breadcrumb'></page-content>
+        <Layout :style="{padding: '0 24px 24px',overflow:'auto'}">
+          <page-content :breadcrumb='breadcrumb' :isNotError='isNotError'></page-content>
         </Layout>
       </div>
     </Layout>
@@ -153,6 +153,14 @@ export default {
     this.userInfoForm = this.userInfo
   },
   methods: {
+    selectMenus (name) {
+      console.log(name)
+      const item = handleFilter(this.menuList, name, 'id')// 选中的当前二级菜单对象
+      console.log(item)
+      this.$router.push({
+        path: item.routeUrl
+      })
+    },
     handleUserInfo (flag) {
       this.userInfoDiaShow = (flag === 'info')
     },
@@ -271,13 +279,19 @@ export default {
 </script>
 
 <style scoped>
+.layout{
+  overflow-y: hidden;
+  min-width: 1035px;
+}
 .ivu-layout-header{
   padding: 0;
 }
 .ivu-menu-submenu{
   text-align: left;
 }
-
+.ivu-layout.ivu-layout-has-sider{
+  flex-direction: column;
+}
 .layout-nav {
   height: 64px;
   line-height: 64px;

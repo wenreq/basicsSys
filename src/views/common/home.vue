@@ -1,6 +1,6 @@
 <template>
-  <div>
-    home home
+  <div class="homeImg">
+    <img src="../../../static/img/homepage.f6593e99.svg" alt="home_img" srcset="">
   </div>
 </template>
 <script>
@@ -16,3 +16,9 @@ export default {
   }
 }
 </script>
+
+<style lang="css" scoped>
+.homeImg{
+  text-align:center;
+}
+</style>

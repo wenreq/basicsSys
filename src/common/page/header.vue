@@ -4,7 +4,7 @@
       <div class="layout-logo"></div>
       <div class="layout-nav">
         <div class="headerLeft">
-          <!-- <img style="height:64px;" src="../../../static/img/headerlogo.png" alt="logo" srcset=""> -->
+          <img style="height:64px;" src="../../../static/img/headerlogo.png" alt="logo" srcset="">
         </div>
         <div class="headerRight">
           <MenuItem ref="menuItem" :active-name='topSelectMenuId' v-for="(item,index) in menuList" :name="index" :key="index" @click.native="topMenuClick(item)">{{item.name}}</MenuItem>
