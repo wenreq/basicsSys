@@ -339,8 +339,6 @@ export default {
       })
     },
     changeArea (value, selectedData) {
-      console.log(value)
-      console.log(selectedData)
       this.selectedData = selectedData
       let params = {
         areaIds: value.join(',')

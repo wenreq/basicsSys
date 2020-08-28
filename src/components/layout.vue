@@ -8,7 +8,7 @@
             <div class="layout-logo"></div>
             <div class="layout-nav">
               <div class="headerLeft">
-                <!-- <img style="height:64px;" src="../../../static/img/headerlogo.png" alt="logo" srcset=""> -->
+                <img style="height:64px;" src="../../static/img/headerlogo.png" alt="logo" srcset="">
               </div>
               <div class="headerRight">
                 <MenuItem ref="menuItem" v-for="(item,index) in menuList" :name="item.id" :key="index" @click.native="topMenuClick(item)">{{item.name}}</MenuItem>
@@ -154,9 +154,7 @@ export default {
   },
   methods: {
     selectMenus (name) {
-      console.log(name)
       const item = handleFilter(this.menuList, name, 'id')// 选中的当前二级菜单对象
-      console.log(item)
       this.$router.push({
         path: item.routeUrl
       })

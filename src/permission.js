@@ -28,8 +28,6 @@ router.beforeEach((to, from, next) => {
         const menus = JSON.parse(localStorage.getItem('menuList')) || []
         store.dispatch('generateRoutes', menus).then(res => {
           router.addRoutes(res)
-          console.log(res)
-          console.log(router)
           const redirect = decodeURIComponent(to.path)
           if (to.path === redirect) {
             // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record

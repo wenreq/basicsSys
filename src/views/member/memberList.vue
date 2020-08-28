@@ -1,99 +1,102 @@
 <template>
   <div>
     <div class="searchContainer">
-      <Collapse v-model="openValue">
-        <Panel name="1">
-            查询条件
-            <div slot="content">
-              <Form ref="formCustom" :model="formCustom" :label-width="90">
-                <Row>
-                  <Col span="6">
-                    <FormItem label="区域：" prop="area">
-                      <Cascader v-model="formCustom.area" :data="areaDate" :load-data="loadData" change-on-select @on-change='changeArea'></Cascader>
-                    </FormItem>
-                  </Col>
-                  <Col span="6">
-                    <FormItem label="小区：" prop="estateId">
-                      <Select clearable v-model="formCustom.estateId">
-                        <Option v-for="item in streetDateList" :value="item.id" :key="item.id">{{ item.housingEstate }}</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                  <Col span="6">
-                    <FormItem label="手机号：" prop="phone">
-                      <Input clearable type="text" placeholder="请输入手机号" v-model="formCustom.phone" number></Input>
-                    </FormItem>
-                  </Col>
-                  <Col span="6">
-                    <FormItem label="IC卡号：" prop="icNo">
-                      <Input clearable type="text" placeholder="请输入IC卡号" v-model="formCustom.icNo" number></Input>
-                    </FormItem>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col span="6">
-                    <FormItem label="是否办卡：" prop="isflag">
-                      <Select clearable v-model="formCustom.isflag">
-                        <Option v-for="item in isFullPayments" :value="item.id" :key="item.id">{{ item.name }}</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                  <Col span="6">
-                    <FormItem label="会员状态：" prop="lock">
-                      <Select clearable v-model="formCustom.lock">
-                        <Option v-for="item in lockList" :value="item.id" :key="item.id">{{ item.name }}</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                  <Col span="6">
-                    <FormItem label="注册来源：" prop="client">
-                      <!-- <Input clearable type="text" v-model="formCustom.client" number></Input> -->
-                      <Select clearable v-model="formCustom.client">
-                        <Option value="全部" >全部</Option>
-                        <Option value="0" >APP注册</Option>
-                        <Option value="1" >IC开卡</Option>
-                        <Option value="2" >设备</Option>
-                        <Option value="3" >小程序</Option>
-                        <Option value="4" >数据导入</Option>
-                        <Option value="5" >客服录入</Option>
-                        <Option value="6" >小哥录入</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                  <Col span="6">
-                    <FormItem label="注册时间：" prop="time">
-                      <DatePicker v-model="formCustom.time" :value="formCustom.time" format="yyyy-MM-dd" type="daterange" placement="bottom-end" placeholder="请选择"></DatePicker>
-                    </FormItem>
-                  </Col>
-                </Row>
-                <Row>
-                  <div style="text-align:right;">
-                    <Button type="primary" @click="handleSubmit('formCustom')">查询</Button>
-                    <Button @click="handleReset('formCustom')" style="margin-left: 8px">重置</Button>
-                  </div>
-                </Row>
-              </Form>
-            </div>
-        </Panel>
-      </Collapse>
+      <Card>
+        <p slot="title">
+          <span>查询条件</span>
+        </p>
+        <div>
+          <Form ref="formCustom" :model="formCustom" :label-width="90">
+            <Row>
+              <Col span="6">
+                <FormItem label="区域：" prop="area">
+                  <Cascader v-model="formCustom.area" :data="areaDate" :load-data="loadData" change-on-select @on-change='changeArea'></Cascader>
+                </FormItem>
+              </Col>
+              <Col span="6">
+                <FormItem label="小区：" prop="estateId">
+                  <Select clearable v-model="formCustom.estateId">
+                    <Option v-for="item in streetDateList" :value="item.id" :key="item.id">{{ item.housingEstate }}</Option>
+                  </Select>
+                </FormItem>
+              </Col>
+              <Col span="6">
+                <FormItem label="手机号：" prop="phone">
+                  <Input clearable type="text" placeholder="请输入手机号" v-model="formCustom.phone" number></Input>
+                </FormItem>
+              </Col>
+              <Col span="6">
+                <FormItem label="IC卡号：" prop="icNo">
+                  <Input clearable type="text" placeholder="请输入IC卡号" v-model="formCustom.icNo" number></Input>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row>
+              <Col span="6">
+                <FormItem label="是否办卡：" prop="isflag">
+                  <Select clearable v-model="formCustom.isflag">
+                    <Option v-for="item in isFullPayments" :value="item.id" :key="item.id">{{ item.name }}</Option>
+                  </Select>
+                </FormItem>
+              </Col>
+              <Col span="6">
+                <FormItem label="会员状态：" prop="lock">
+                  <Select clearable v-model="formCustom.lock">
+                    <Option v-for="item in lockList" :value="item.id" :key="item.id">{{ item.name }}</Option>
+                  </Select>
+                </FormItem>
+              </Col>
+              <Col span="6">
+                <FormItem label="注册来源：" prop="client">
+                  <!-- <Input clearable type="text" v-model="formCustom.client" number></Input> -->
+                  <Select clearable v-model="formCustom.client">
+                    <Option value="全部" >全部</Option>
+                    <Option value="0" >APP注册</Option>
+                    <Option value="1" >IC开卡</Option>
+                    <Option value="2" >设备</Option>
+                    <Option value="3" >小程序</Option>
+                    <Option value="4" >数据导入</Option>
+                    <Option value="5" >客服录入</Option>
+                    <Option value="6" >小哥录入</Option>
+                  </Select>
+                </FormItem>
+              </Col>
+              <Col span="6">
+                <FormItem label="注册时间：" prop="time">
+                  <DatePicker v-model="formCustom.time" :value="formCustom.time" format="yyyy-MM-dd" type="daterange" placement="bottom-end" placeholder="请选择"></DatePicker>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row>
+              <div style="text-align:right;">
+                <Button type="primary" @click="handleSubmit('formCustom')">查询</Button>
+                <Button @click="handleReset('formCustom')" style="margin-left: 8px">重置</Button>
+              </div>
+            </Row>
+          </Form>
+        </div>
+      </Card>
     </div>
-    <Table :loading="loading" border ref="selection" :columns="columns" :data="dataList">
-      <template slot-scope="{ row }" slot="originName">
-          <span style="font-weight: 600;">{{ row.originName }}</span>
-      </template>
-      <template slot-scope="{ row }" slot="isLock">
-        <Tag color="success" v-if="row.isLock === 0">启用</Tag>
-        <Tag color="error" v-else>禁用</Tag>
-      </template>
-      <template slot-scope="{ row, index }" slot="action">
-          <Button type="default" size="small" style="margin-right: 5px" @click="show(row)">查看</Button>
-          <Button type="primary" size="small" @click="edit(index)">编辑</Button>
-      </template>
-    </Table>
+    <Card>
+      <p slot="title">
+        <span>用户列表</span>
+        <Button style="float:right;" type="primary">导出</Button>
+      </p>
+      <Table :loading="loading" border ref="selection" :columns="columns" :data="dataList">
+        <template slot-scope="{ row }" slot="originName">
+            <span style="font-weight: 600;">{{ row.originName }}</span>
+        </template>
+        <template slot-scope="{ row }" slot="isLock">
+          <Tag color="success" v-if="row.isLock === 0">启用</Tag>
+          <Tag color="error" v-else>禁用</Tag>
+        </template>
+        <template slot-scope="{ row, index }" slot="action">
+            <Button type="default" size="small" style="margin-right: 5px" @click="show(row)">查看</Button>
+            <Button type="primary" size="small" @click="edit(index)">编辑</Button>
+        </template>
+      </Table>
+    </Card>
     <wen-page :totalCount="totalCount" @pageIndex="handlePageIndex" @pageSize="handlePageSize"></wen-page>
-    <!-- <div style="text-align:center;margin:15px 0">
-      <Page @on-change="changePage" @on-page-size-change="changePageSize" :total="totalCount" show-total show-elevator show-sizer />
-    </div> -->
   </div>
 </template>
 
@@ -225,14 +228,6 @@ export default {
       this.page = pageIndex
       this.getParms()
     },
-    // changePage (index) {
-    //   this.page = index
-    //   this.getParms()
-    // },
-    // changePageSize (size) {
-    //   this.pageSize = size
-    //   this.getParms()
-    // },
     getList (params) {
       this.loading = true
       getList(params).then(res => {
@@ -339,8 +334,6 @@ export default {
       })
     },
     changeArea (value, selectedData) {
-      console.log(value)
-      console.log(selectedData)
       this.selectedData = selectedData
       let params = {
         areaIds: value.join(',')
@@ -362,5 +355,9 @@ export default {
 }
 .ivu-date-picker{
   display: block;
+}
+.ivu-card-head p{
+  height: 35px;
+  line-height: 35px;
 }
 </style>
